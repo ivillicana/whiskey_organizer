@@ -29,22 +29,22 @@ whiskey_list = [
     1 => {
         :brand => "Lagavulin",
         :name => "16 Years",
-        :type => "Sotch"
+        :whiskey_type => "Scotch"
     },
     2 => {
         :brand => "Jack Daniel's",
         :name => "Gentleman Jack",
-        :type => "Tennessee Whiskey"
+        :whiskey_type => "Tennessee Whiskey"
     },
     3 => {
         :brand => "Jack Daniel's",
         :name => "Old No. 7",
-        :type => "Tennessee Whiskey"
+        :whiskey_type => "Tennessee Whiskey"
     },
     4 => {
         :brand => "Crown Royal",
         :name => "Reserve",
-        :type => "Canadian Whisky"
+        :whiskey_type => "Canadian Whisky"
     }
 ]
 
