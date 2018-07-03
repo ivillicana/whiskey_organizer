@@ -22,13 +22,13 @@ class ItemController < ApplicationController
     end
 
     post '/items' do
-        
+
         if logged_in?
-            if params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| !k.empty?} && !params[:item][:last_tasted_date].empty?
+            if params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| !v.empty?} && !params[:item][:last_tasted_date].empty?
                 whiskey = Whiskey.create(params[:whiskey])
-                item = Item.create(last_tasted_date: params[:whiskey][:last_tasted_date], whiskey_id: whiskey.id, user_id: current_user.id)
+                item = Item.create(last_tasted_date: params[:item][:last_tasted_date], whiskey_id: whiskey.id, user_id: current_user.id)
                 redirect "/items/#{item.id}"
-            elsif !params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| k.empty?} && !params[:item][:last_tasted_date].empty?
+            elsif !params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| v.empty?} && !params[:item][:last_tasted_date].empty?
                 item = Item.create(params[:item])
                 item.user = current_user
                 item.save

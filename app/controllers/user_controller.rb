@@ -15,7 +15,7 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        if params[:user].all? {|k,v| !k.empty?}
+        if params[:user].all? {|k,v| !v.empty?}
             params[:user][:username].downcase
             user = User.create(params[:user])
             session[:user_id] = user.id 

@@ -12,3 +12,11 @@ ul.card-text li:first-of-type {
 ul.card-text li:last-of-type {
     font-style: italic;
 }
+
+.form-control {
+    margin-bottom: 0.25rem;
+}
+
+.btn-block {
+    margin-top: 1.5rem;
+}
