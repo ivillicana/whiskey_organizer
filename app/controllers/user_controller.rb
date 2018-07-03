@@ -37,7 +37,7 @@ class UserController < ApplicationController
         user = User.find_by(username: params[:user][:username].downcase)
         if user && user.authenticate(params[:user][:password])
             log_in(user)
-            redirect "/users/#{user.slug}"
+            redirect "/items"
         else
             redirect '/login'
         end
