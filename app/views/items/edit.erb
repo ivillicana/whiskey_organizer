@@ -1,1 +1,6 @@
 <h1>Edit Page</h1>
+<form method="post" action="/items/<%= @item.id %>">
+    <label>Date Last Tasted: <input type="text" name="item[last_tasted_date]" ></label><br></br>
+    <input type="submit" value="Edit Item">
+    <button type="submit" formaction="/items/<%= @item.id %>/delete">Delete</button>
+</form>
