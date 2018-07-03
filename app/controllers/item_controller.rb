@@ -11,7 +11,34 @@ class ItemController < ApplicationController
     end
 
     get '/items/new' do
-        erb :'items/new'
+        if logged_in?
+            @user = User.find(session[:user_id])
+            @whiskeys = Whiskey.all
+            erb :'items/new'
+        else
+            redirect '/login'
+        end
+        
+    end
+
+    post '/items' do
+        
+        if logged_in?
+            if params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| !k.empty?} && !params[:item][:last_tasted_date].empty?
+                whiskey = Whiskey.create(params[:whiskey])
+                item = Item.create(last_tasted_date: params[:whiskey][:last_tasted_date], whiskey_id: whiskey.id, user_id: current_user.id)
+                redirect "/items/#{item.id}"
+            elsif !params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| k.empty?} && !params[:item][:last_tasted_date].empty?
+                item = Item.create(params[:item])
+                item.user = current_user
+                item.save
+                redirect "/items/#{item.id}"
+            else
+                redirect '/items/new'
+            end
+        else
+            redirect '/login'
+        end
     end
 
     get '/items/:id' do
