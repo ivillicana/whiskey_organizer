@@ -8,7 +8,6 @@ class UserController < ApplicationController
 
     get '/signup' do
         if Helper.logged_in?(session)
-            user = User.find_by(s)
             redirect "/users/#{User.find(session[:user_id]).slug}"
         else
             erb :'users/signup'
@@ -26,6 +25,7 @@ class UserController < ApplicationController
     end
 
     get '/login' do
+        binding.pry
         if Helper.logged_in?(session)
             redirect "/users/#{User.find(session[:user_id]).slug}"
         else
