@@ -35,7 +35,10 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
       <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="/items/<%= @item.id %>/delete">Delete</button><br>
 
-      <p><span class="mt-5 mb-3 text-muted"><a href='/items'>I don't want to edit this item</a></span></p>
+      <p>
+        <span class="mt-5 mb-3 text-muted"><a href='/items'>I don't want to edit this item</a></span><br>
+        <span class="mt-5 mb-3 text-muted"><a href='/items/new'>Create new item</a></span>
+      </p>
 
     </form>
   </body>
