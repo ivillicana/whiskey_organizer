@@ -26,7 +26,6 @@ class UserController < ApplicationController
     end
 
     get '/login' do
-        binding.pry
         if Helper.logged_in?(session)
             redirect "/users/#{User.find(session[:user_id]).slug}"
         else
@@ -35,13 +34,18 @@ class UserController < ApplicationController
     end
 
     post '/login' do
-        user = User.find_by(username: params[:user][:username])
+        user = User.find_by(username: params[:user][:username].downcase)
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
             redirect "/users/#{user.slug}"
         else
             redirect '/login'
         end
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/login'
     end
 
 end
