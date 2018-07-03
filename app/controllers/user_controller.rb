@@ -2,8 +2,9 @@ class UserController < ApplicationController
 
     get '/users/:slug' do
         @user = User.find_by_slug(params[:slug])
+        @items = @user.items
         @session = session
-        erb :'users/home'
+        erb :'items/home'
     end
 
     get '/signup' do
