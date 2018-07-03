@@ -42,8 +42,7 @@ class ItemController < ApplicationController
         if Helper.logged_in?(session)
             item = Item.find(params[:id])
             user = Helper.current_user(session)
-            if item.user = user
-                binding.pry
+            if item.user == user
                 if !params[:item][:last_tasted_date].empty?
                     item.last_tasted_date = params[:item][:last_tasted_date]
                     item.save
@@ -54,6 +53,19 @@ class ItemController < ApplicationController
             else
                 redirect '/items'
             end
+        else
+            redirect '/login'
+        end
+    end
+
+    post '/items/:id/delete' do
+        if Helper.logged_in?(session)
+            item = Item.find(params[:id])
+            user = Helper.current_user(session)
+            if item.user == user
+                item.destroy
+            end
+            redirect '/items'
         else
             redirect '/login'
         end
