@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Log In to your Whiskey Organizer account">
+    <link rel="icon" href="/images/main-icon.bmp">
+
+    <title>Add an item to your collection</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" method="post" action="/items">
+      <img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Add an Item</h1>
+      
+
+      <select name="item[whiskey_id]" class="form-control">
+        <option value=""%>Create a whiskey...</option>
+        <% @whiskeys.each do |whiskey| %>
+            <option value="<%=whiskey.id%>"%><%=whiskey.brand%> - <%=whiskey.name%></option>
+        <% end %>
+      </select>
+
+      <br><p>or create a new whiskey</p>
+
+      <label for="inputWhiskeyBrand" class="sr-only">Whiskey Brand</label>
+      <input type="text" id="inputWhiskeyBrand" class="form-control" placeholder="Whiskey Brand (e.g. - Jack Daniel's)" name="whiskey[brand]">
+      <label for="inputWhiskeyName" class="sr-only">Whiskey Name</label>
+      <input type="text" id="inputWhiskeyName" class="form-control" placeholder="Whiskey Name (e.g. - Old No. 7)" name="whiskey[name]">
+      <label for="inputWhiskeyType" class="sr-only">Whiskey Type</label>
+      <input type="text" id="inputWhiskeyType" class="form-control" placeholder="Whiskey Type (e.g. - Bourbon)" name="whiskey[whiskey_type]">
+
+      <br><p>and</p>
+
+      <label for="inputTasted" class="sr-only">Date Last Tasted (yyyy-mm-dd)</label>
+      <input type="text" id="inputTasted" class="form-control" placeholder="Date Last Tasted (yyyy-mm-dd)" name="item[last_tasted_date]" required>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Add Item</button><br>
+      <p><span class="mt-5 mb-3 text-muted"><a href='/items'>I don't want to add item</a></span></p>
+
+    </form>
+  </body>
+</html>
