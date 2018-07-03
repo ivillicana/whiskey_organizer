@@ -1,7 +1,7 @@
 class ItemController < ApplicationController
 
     get '/items' do
-        if logged_in?(session)
+        if logged_in?
             @user = User.find(session[:user_id])
             @items = @user.items
             erb :'/items/home'
@@ -11,9 +11,9 @@ class ItemController < ApplicationController
     end
 
     get '/items/:id' do
-        if logged_in?(session)
+        if logged_in?
             @item = Item.find(params[:id])
-            @user = current_user(session)
+            @user = current_user
             if @item.user == @user
                 erb :'/items/show'
             else
@@ -25,9 +25,9 @@ class ItemController < ApplicationController
     end
 
     get '/items/:id/edit' do
-        if logged_in?(session)
+        if logged_in?
             @item = Item.find(params[:id])
-            @user = current_user(session)
+            @user = current_user
             if @item.user == @user
                 erb :'/items/edit'
             else
@@ -39,9 +39,9 @@ class ItemController < ApplicationController
     end
 
     post '/items/:id' do
-        if logged_in?(session)
+        if logged_in?
             item = Item.find(params[:id])
-            user = current_user(session)
+            user = current_user
             if item.user == user
                 if !params[:item][:last_tasted_date].empty?
                     item.last_tasted_date = params[:item][:last_tasted_date]
@@ -59,9 +59,9 @@ class ItemController < ApplicationController
     end
 
     post '/items/:id/delete' do
-        if logged_in?(session)
+        if logged_in?
             item = Item.find(params[:id])
-            user = current_user(session)
+            user = current_user
             if item.user == user
                 item.destroy
             end
