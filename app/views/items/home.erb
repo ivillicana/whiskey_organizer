@@ -27,8 +27,9 @@
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <ul class="list-unstyled">
+                <li><a href="/items" class="text-white">My Collection</a></li><br>
+                <li><a href="/items/new" class="text-white">Add Item</a></li><br>
                 <li><a href="/logout" class="text-white">Log Out</a></li>
-                <li><a href="/items/new" class="text-white">Add Item</a></li>
               </ul>
             </div>
           </div>
@@ -81,7 +82,9 @@
                     <div class="btn-group">
                     <form  method="get">
                       <button type="submit" formaction="/items/<%= item.id %>" class="btn btn-sm btn-outline-secondary">View</button>
+                      <% if item.user == current_user %>
                       <button type="submit" formaction="/items/<%= item.id %>/edit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      <% end %>
                     </form>
                     </div>
                     <small class="text-muted">Last tasted: <%= item.last_tasted_date %></small>

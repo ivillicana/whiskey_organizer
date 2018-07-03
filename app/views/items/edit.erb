@@ -1,6 +1,42 @@
-<h1>Edit Page</h1>
-<form method="post" action="/items/<%= @item.id %>">
-    <label>Date Last Tasted: <input type="text" name="item[last_tasted_date]" ></label><br></br>
-    <input type="submit" value="Edit Item">
-    <button type="submit" formaction="/items/<%= @item.id %>/delete">Delete</button>
-</form>
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Edit your item">
+    <link rel="icon" href="/images/main-icon.bmp">
+
+    <title>Whiskey Organizer - Edit Item</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" method="post" action="/items/<%= @item.id %>">
+      
+      <img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Edit your Item</h1>
+      
+        <p><strong><%= @item.whiskey.brand %></strong><br>
+        <%= @item.whiskey.name %><br>
+        <%= @item.whiskey.whiskey_type %></p>
+       
+                  
+      <label for="inputTasted" class="sr-only">Date Last Tasted (yyyy-mm-dd)</label>
+      <input type="text" id="inputTasted" class="form-control" placeholder="Date Last Tasted (yyyy-mm-dd)" name="item[last_tasted_date]">
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="/items/<%= @item.id %>/delete">Delete</button><br>
+
+      <p><span class="mt-5 mb-3 text-muted"><a href='/items'>I don't want to edit this item</a></span></p>
+
+    </form>
+  </body>
+</html>
