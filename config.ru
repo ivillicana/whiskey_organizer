@@ -6,4 +6,5 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 
 use Rack::MethodOverride
 use UserController
+use WhiskeyController
 run ApplicationController
