@@ -8,7 +8,7 @@ Specs:
 - [x] Include at least one belongs_to relationship on another model (x belongs_to y, e.g. Post belongs_to User)
 - [x] Include user accounts
 - [x] Ensure that users can't modify content created by other users
-- [] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 - [ ] Include user input validations
 - [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
