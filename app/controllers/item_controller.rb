@@ -10,6 +10,10 @@ class ItemController < ApplicationController
         end
     end
 
+    get '/items/new' do
+        erb :'items/new'
+    end
+
     get '/items/:id' do
         if logged_in?
             @item = Item.find(params[:id])
