@@ -4,7 +4,22 @@ class ItemController < ApplicationController
         if Helper.logged_in?(session)
             @user = User.find(session[:user_id])
             @items = @user.items
-            erb :'/items/show'
+            erb :'/items/home'
+        else
+            redirect '/login'
+        end
+    end
+
+    get '/items/:id' do
+        if Helper.logged_in?(session)
+            binding.pry
+            @item = Item.find(params[:id])
+            @user = Helper.current_user(session)
+            if @item.user == @user
+                erb :'/items/show'
+            else
+                redirect '/items'
+            end
         else
             redirect '/login'
         end
