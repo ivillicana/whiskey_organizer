@@ -23,6 +23,10 @@
       
       <img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Edit your Item</h1>
+
+      <% if flash.has?(:date) %>
+        <p class="error"><%= flash[:date] %></p>
+      <% end %>
       
         <p><strong><%= @item.whiskey.brand %></strong><br>
         <%= @item.whiskey.name %><br>
