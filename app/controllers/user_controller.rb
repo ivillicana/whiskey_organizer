@@ -4,9 +4,16 @@ class UserController < ApplicationController
     use Rack::Flash
 
     get '/users/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        @items = @user.items
-        erb :'items/home'
+        if logged_in?
+            if @user = User.find_by_slug(params[:slug])
+                @items = @user.items
+                erb :'items/home'
+            else
+                redirect '/items'
+            end
+        else
+            redirect '/login'
+        end
     end
 
     get '/signup' do
