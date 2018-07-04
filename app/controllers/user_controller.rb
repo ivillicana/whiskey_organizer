@@ -26,7 +26,7 @@ class UserController < ApplicationController
 
     post '/signup' do
         if params[:user].all? {|k,v| !v.empty?}
-            params[:user][:username].downcase
+            params[:user][:username].downcase!
             user = User.create(params[:user])
             session[:user_id] = user.id 
             redirect "/users/#{user.slug}"
