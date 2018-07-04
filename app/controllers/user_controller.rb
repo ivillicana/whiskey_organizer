@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UserController < ApplicationController
+    use Rack::Flash
 
     get '/users/:slug' do
         @user = User.find_by_slug(params[:slug])
@@ -21,6 +24,7 @@ class UserController < ApplicationController
             session[:user_id] = user.id 
             redirect "/users/#{user.slug}"
         else
+            flash[:err_all_fields] = "Please fill out all fields"
             redirect '/signup'
         end
     end
@@ -34,11 +38,17 @@ class UserController < ApplicationController
     end
 
     post '/login' do
-        user = User.find_by(username: params[:user][:username].downcase)
-        if user && user.authenticate(params[:user][:password])
-            log_in(user)
-            redirect "/items"
+        if params[:user].all? {|k,v| !v.empty?}
+            user = User.find_by(username: params[:user][:username].downcase)
+            if user && user.authenticate(params[:user][:password])
+                log_in(user)
+                redirect "/items"
+            else
+                flash[:wrong_credentials] = "Incorrect Username and/or Password"
+                redirect '/login'
+            end
         else
+            flash[:err_all_fields] = "Please fill out all fields"
             redirect '/login'
         end
     end
