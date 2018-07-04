@@ -89,6 +89,8 @@ class ItemController < ApplicationController
                     item.save
                     redirect "/items/#{item.id}"
                 else
+                    #error message is last_tasted_date is not filled out correctly
+                    flash[:date] = "Please add a valid date (e.g. 1964-06-14)"
                     redirect "/items/#{item.id}/edit"
                 end
             else
