@@ -24,7 +24,7 @@ class ItemController < ApplicationController
     post '/items' do
 
         if logged_in?
-            if !params[:item][:last_tasted_date].empty? && params[:item][:last_tasted_date].match?(/^(\d{4}-\d{2}-\d{2})/) #Validates last_tasted_date
+            if valid_date? #Validates last_tasted_date
                 if params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| !v.empty?}
                     #create an item with an existing whiskey
                     whiskey = Whiskey.create(params[:whiskey])
@@ -84,7 +84,7 @@ class ItemController < ApplicationController
             item = Item.find(params[:id])
             user = current_user
             if item.user == user
-                if !params[:item][:last_tasted_date].empty?
+                if valid_date?
                     item.last_tasted_date = params[:item][:last_tasted_date]
                     item.save
                     redirect "/items/#{item.id}"
