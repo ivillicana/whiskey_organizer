@@ -14,12 +14,19 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
     <form class="form-signin" method="post" action="/login">
       <a href="/"><img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72"></a>
       <h1 class="h3 mb-3 font-weight-normal">Log In Below</h1>
+
+      <% if flash.has?(:err_all_fields) %>
+        <p class="error"><%= flash[:err_all_fields] %></p>
+      <% elsif flash.has?(:wrong_credentials) %>
+        <p class="error"><%= flash[:wrong_credentials] %></p>
+      <% end %>
 
       <label for="inputUsername" class="sr-only">Username</label>
       <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="user[username]" required autofocus>
