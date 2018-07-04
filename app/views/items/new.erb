@@ -21,6 +21,10 @@
     <form class="form-signin" method="post" action="/items">
       <img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Add an Item</h1>
+
+      <% if flash.has?(:choose_one) %>
+        <p class="error"><%= flash[:choose_one] %></p>
+      <% end %>
       
 
       <select name="item[whiskey_id]" class="form-control">

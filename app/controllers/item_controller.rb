@@ -34,6 +34,7 @@ class ItemController < ApplicationController
                 item.save
                 redirect "/items/#{item.id}"
             else
+                flash[:choose_one] = "Please add an existing whiskey OR create a new one"
                 redirect '/items/new'
             end
         else
