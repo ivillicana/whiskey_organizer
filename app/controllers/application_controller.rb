@@ -29,5 +29,10 @@ class ApplicationController < Sinatra::Base
     def log_in(user)
         session[:user_id] = user.id 
     end
+
+    def valid_date?
+      !params[:item][:last_tasted_date].empty? && params[:item][:last_tasted_date].match?(/^(\d{4}-\d{2}-\d{2})/)
+    end
   end
+
 end
