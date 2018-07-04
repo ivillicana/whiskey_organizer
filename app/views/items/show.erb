@@ -1,2 +1,87 @@
-<h1><%=@item.whiskey.brand%></h1>
-<%= @item.last_tasted_date %>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Whiskey Organizer">
+    <link rel="icon" href="/images/main-icon.bmp">
+
+    <title>Whiskey Organizer - Item</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/cover.css" rel="stylesheet">
+    
+    <link href="/css/style.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Whiskey Organizer</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="/items">My Collection</a>
+            <a class="nav-link" href="/items/new">Add Item</a>
+            <a class="nav-link" href="/logout">Log Out</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-md-12">
+              <div class="card mb-12 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <ul class="card-text" id="item-info">
+                    <li><%= @item.whiskey.brand %></li>
+                    <li><%= @item.whiskey.name %></li>
+                    <li><%= @item.whiskey.whiskey_type %></li>
+                  </ul>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                    <form  method="get">
+                      <% if @item.user == current_user %>
+                      <button type="submit" formaction="/items/<%= @item.id %>/edit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      <% end %>
+                    </form>
+                    </div>
+                    <small class="text-muted">Last tasted: <%= @item.last_tasted_date %></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+       
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p></p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/holder.min.js"></script>
+    
+  </body>
+</html>
