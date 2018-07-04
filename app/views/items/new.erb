@@ -24,6 +24,8 @@
 
       <% if flash.has?(:choose_one) %>
         <p class="error"><%= flash[:choose_one] %></p>
+      <% elsif flash.has?(:date) %>
+        <p class="error"><%= flash[:date] %></p>
       <% end %>
       
 
