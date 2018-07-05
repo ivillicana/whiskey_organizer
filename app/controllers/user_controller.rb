@@ -22,7 +22,7 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        if user_params_filled? #checks if all form field are filled
+        if user_params_filled? #checks if all form fields are filled
             params[:user][:username].downcase!
             #redirect user if desired username is already taken
             if User.find_by(username: params[:user][:username])
@@ -48,7 +48,7 @@ class UserController < ApplicationController
     end
 
     post '/login' do
-        if params[:user].all? {|k,v| !v.empty?}
+        if user_params_filled? #checks if all form fields are filled
             user = User.find_by(username: params[:user][:username].downcase)
             if user && user.authenticate(params[:user][:password])
                 log_in(user)
