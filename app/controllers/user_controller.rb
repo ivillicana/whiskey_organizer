@@ -27,9 +27,15 @@ class UserController < ApplicationController
     post '/signup' do
         if params[:user].all? {|k,v| !v.empty?}
             params[:user][:username].downcase!
-            user = User.create(params[:user])
-            session[:user_id] = user.id 
-            redirect "/users/#{user.slug}"
+            #redirect user if desired username is already taken
+            if User.find_by(username: params[:user][:username])
+                flash[:user_taken] = "Username is not available."
+                redirect '/signup'
+            else
+                user = User.create(params[:user])
+                session[:user_id] = user.id 
+                redirect "/users/#{user.slug}"
+            end
         else
             flash[:err_all_fields] = "Please fill out all fields"
             redirect '/signup'
