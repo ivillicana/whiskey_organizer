@@ -11,7 +11,7 @@ Specs:
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying - ItemController allows Items to be created, read, updated, destroyed
 - [x] Include user input validations - includes #valid_date? helper method and html form requires input in order to submit
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new) - uses rack-flash3 to display validation failures and guide user when creating/updating Item or when logging in/signing up
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits
