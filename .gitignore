@@ -35,6 +35,7 @@ build-iPhoneSimulator/
 /doc/
 /rdoc/
 .DS_Store
+/db/development.sqlite
 
 ## Environment normalization:
 /.bundle/
