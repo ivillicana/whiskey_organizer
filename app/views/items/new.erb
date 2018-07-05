@@ -30,13 +30,13 @@
       
 
       <select name="item[whiskey_id]" class="form-control">
-        <option value=""%>Create a whiskey...</option>
+        <option value=""%>Choose a whiskey...</option>
         <% @whiskeys.each do |whiskey| %>
             <option value="<%=whiskey.id%>"%><%=whiskey.brand%> - <%=whiskey.name%></option>
         <% end %>
       </select>
 
-      <br><p>or create a new whiskey</p>
+      <br><p>...or create a new whiskey</p>
 
       <label for="inputWhiskeyBrand" class="sr-only">Whiskey Brand</label>
       <input type="text" id="inputWhiskeyBrand" class="form-control" placeholder="Whiskey Brand (e.g. - Jack Daniel's)" name="whiskey[brand]">
