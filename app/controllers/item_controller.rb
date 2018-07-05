@@ -3,7 +3,7 @@ class ItemController < ApplicationController
     get '/items' do
         if logged_in?
             @user = User.find(session[:user_id])
-            @items = @user.items
+            @items = @user.items.sort_by {|i| i.whiskey.brand}
             erb :'/items/home'
         else
             redirect '/login'
