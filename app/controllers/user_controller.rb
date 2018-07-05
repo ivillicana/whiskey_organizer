@@ -1,8 +1,5 @@
-require 'rack-flash'
-
 class UserController < ApplicationController
-    use Rack::Flash
-
+    
     get '/users/:slug' do
         if logged_in?
             if @user = User.find_by_slug(params[:slug])

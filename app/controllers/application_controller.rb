@@ -1,7 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-
+  use Rack::Flash
+  
   configure do
     enable :sessions #enables session hash in cookies
     set :session_secret, "$3kR*Tk3y5"
