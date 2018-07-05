@@ -6,10 +6,10 @@ class UserController < ApplicationController
                 @items = @user.items
                 erb :'items/home'
             else
-                redirect '/items'
+                redirect '/items' #if cannot find username slug
             end
         else
-            redirect '/login'
+            redirect '/login' #if not logged in
         end
     end
 
@@ -22,18 +22,18 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        if params[:user].all? {|k,v| !v.empty?}
+        if user_params_filled? #checks if all form field are filled
             params[:user][:username].downcase!
             #redirect user if desired username is already taken
             if User.find_by(username: params[:user][:username])
                 flash[:user_taken] = "Username is not available."
                 redirect '/signup'
-            else
+            else #create user if all fields are correctly filled
                 user = User.create(params[:user])
                 session[:user_id] = user.id 
                 redirect "/users/#{user.slug}"
             end
-        else
+        else #if fields are not filled out
             flash[:err_all_fields] = "Please fill out all fields"
             redirect '/signup'
         end
