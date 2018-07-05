@@ -32,9 +32,14 @@ class ApplicationController < Sinatra::Base
         session[:user_id] = user.id 
     end
 
-    def valid_date?
+    def valid_date? #checks if date field is correctly fille out
       !params[:item][:last_tasted_date].empty? && params[:item][:last_tasted_date].match?(/^(\d{4}-\d{2}-\d{2})/)
     end
+
+    def user_params_filled? #checks if all form fields are filled for sign up/ log in
+      params[:user].all? {|k,v| !v.empty?}
+    end
+
   end
 
 end
