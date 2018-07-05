@@ -55,11 +55,7 @@ class ItemController < ApplicationController
         if logged_in?
             @item = Item.find(params[:id])
             @user = current_user
-            if @item.user == @user
-                erb :'/items/show'
-            else
-                redirect '/items'
-            end
+            erb :'/items/show'
         else
             redirect '/login'
         end
