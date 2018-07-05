@@ -21,9 +21,12 @@
     <form class="form-signin" method="post" action="/signup">
       <a href="/"><img class="mb-4" src="/images/logo.bmp" alt="Main logo" width="72" height="72"></a>
       <h1 class="h3 mb-3 font-weight-normal">Sign Up Below</h1>
+      
       <% if flash.has?(:err_all_fields) %>
         <p class="error"><%= flash[:err_all_fields] %></p>
-        <% end %>
+      <% elsif flash.has?(:user_taken) %>
+        <p class="error"><%= flash[:user_taken] %></p>
+      <% end %>
 
       <label for="inputName" class="sr-only">Name</label>
       <input type="text" id="inputName" class="form-control" placeholder="Name" name="user[name]"  required autofocus>
