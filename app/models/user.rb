@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
     has_many :items
     has_many :whiskeys, through: :items
+    validates :username, presence: true, uniqueness: true
+    validates :password, presence: true
 
     has_secure_password
 
