@@ -1,16 +1,13 @@
 class UserController < ApplicationController
-    
+
     get '/users/:slug' do
-        if logged_in?
+        redirect_if_not_logged_in
             if @user = User.find_by_slug(params[:slug])
                 @items = @user.items
                 erb :'items/home'
             else
                 redirect '/items' #if cannot find username slug
             end
-        else
-            redirect '/login' #if not logged in
-        end
     end
 
     get '/signup' do
@@ -30,7 +27,7 @@ class UserController < ApplicationController
                 redirect '/signup'
             else #create user if all fields are correctly filled
                 user = User.create(params[:user])
-                session[:user_id] = user.id 
+                session[:user_id] = user.id
                 redirect "/users/#{user.slug}"
             end
         else #if fields are not filled out
@@ -40,11 +37,9 @@ class UserController < ApplicationController
     end
 
     get '/login' do
-        if logged_in?
+        redirect_if_not_logged_in
             redirect "/users/#{User.find(session[:user_id]).slug}"
-        else
-            erb :'users/login'
-        end
+
     end
 
     post '/login' do

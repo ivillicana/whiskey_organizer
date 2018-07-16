@@ -3,7 +3,7 @@ require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
   use Rack::Flash
-  
+
   configure do
     enable :sessions #enables session hash in cookies
     set :session_secret, "$3kR*Tk3y5"
@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def log_in(user)
-        session[:user_id] = user.id 
+        session[:user_id] = user.id
     end
 
     def valid_date? #checks if date field is correctly fille out
@@ -38,6 +38,12 @@ class ApplicationController < Sinatra::Base
 
     def user_params_filled? #checks if all form fields are filled for sign up/ log in
       params[:user].all? {|k,v| !v.empty?}
+    end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/login'
+      end
     end
 
   end

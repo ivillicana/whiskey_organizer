@@ -11,19 +11,15 @@ class ItemController < ApplicationController
     end
 
     get '/items/new' do
-        if logged_in?
+        redirect_if_not_logged_in
             @user = User.find(session[:user_id])
             @whiskeys = Whiskey.all
             erb :'items/new'
-        else
-            redirect '/login'
-        end
-        
     end
 
     post '/items' do
 
-        if logged_in?
+        redirect_if_not_logged_in
             if valid_date? #Validates last_tasted_date
                 if params[:item][:whiskey_id].empty? && params[:whiskey].all? {|k,v| !v.empty?}
                     #create an item with an existing whiskey
@@ -46,23 +42,17 @@ class ItemController < ApplicationController
                 flash[:date] = "Please add a valid date (e.g. 1964-06-14)"
                 redirect '/items/new'
             end
-        else
-            redirect '/login'
-        end
     end
 
     get '/items/:id' do
-        if logged_in?
+        redirect_if_not_logged_in
             @item = Item.find(params[:id])
             @user = current_user
             erb :'/items/show'
-        else
-            redirect '/login'
-        end
     end
 
     get '/items/:id/edit' do
-        if logged_in?
+        redirect_if_not_logged_in
             @item = Item.find(params[:id])
             @user = current_user
             if @item.user == @user
@@ -70,13 +60,10 @@ class ItemController < ApplicationController
             else
                 redirect '/items'
             end
-        else
-            redirect '/login'
-        end
     end
 
     post '/items/:id' do
-        if logged_in?
+      redirect_if_not_logged_in
             item = Item.find(params[:id])
             user = current_user
             if item.user == user
@@ -92,22 +79,16 @@ class ItemController < ApplicationController
             else
                 redirect '/items'
             end
-        else
-            redirect '/login'
-        end
     end
 
     post '/items/:id/delete' do
-        if logged_in?
+      redirect_if_not_logged_in
             item = Item.find(params[:id])
             user = current_user
             if item.user == user
                 item.destroy
             end
             redirect '/items'
-        else
-            redirect '/login'
-        end
     end
 
 end
