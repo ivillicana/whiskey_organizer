@@ -1,5 +1,5 @@
 # Whiskey Organizer
-A Sinatra based CRUD application that helps users organize their personal whiskey collections.
+A Sinatra based CRUD application that helps users organize their personal whiskey collections. For a brief walk-through on application use and features, view the [walk-through video](https://youtu.be/tunSmEdsQO8).
 
 ## Install Instructions
 Download or clone files from repository, run `bundle` to include necessary ruby gems. Run `rake db:migrate`, then use `shotgun` to use a local server. Seeded information for database can be included by running `rake db:seed`.
